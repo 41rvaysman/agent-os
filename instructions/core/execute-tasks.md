@@ -72,14 +72,14 @@ Use the context-fetcher subagent to gather minimal context for task understandin
 
 </step>
 
-<step number="3" subagent="git-workflow" name="git_branch_management">
+<step number="3" subagent="commit-specialist" name="git_branch_management">
 
 ### Step 3: Git Branch Management
 
-Use the git-workflow subagent to manage git branches to ensure proper isolation by creating or switching to the appropriate branch for the spec.
+Use the commit-specialist subagent to manage git branches to ensure proper isolation by creating or switching to the appropriate branch for the spec.
 
 <instructions>
-  ACTION: Use git-workflow subagent
+  ACTION: Use commit-specialist subagent
   REQUEST: "Check and manage branch for spec: [SPEC_FOLDER]
             - Create branch if needed
             - Switch to correct branch

@@ -2,7 +2,7 @@
 
 ## Context
 
-Global code style rules for Agent OS projects.
+Code style rules for the Palma Android Application project.
 
 <conditional-block context-check="general-formatting">
 IF this General Formatting section already read in current context:
@@ -14,19 +14,19 @@ ELSE:
 ## General Formatting
 
 ### Indentation
-- Use 2 spaces for indentation (never tabs)
+- Use 4 spaces for indentation (never tabs)
 - Maintain consistent indentation throughout files
 - Align nested structures for readability
 
 ### Naming Conventions
-- **Methods and Variables**: Use snake_case (e.g., `user_profile`, `calculate_total`)
+- **Methods and Variables**: Use camelCase (e.g., `userProfile`, `calculateTotal`)
 - **Classes and Modules**: Use PascalCase (e.g., `UserProfile`, `PaymentProcessor`)
 - **Constants**: Use UPPER_SNAKE_CASE (e.g., `MAX_RETRY_COUNT`)
 
 ### String Formatting
-- Use single quotes for strings: `'Hello World'`
-- Use double quotes only when interpolation is needed
-- Use template literals for multi-line strings or complex interpolation
+- Use double quotes for strings: `"Hello World"`
+- Use string templates for interpolation: `"Hello $name"`
+- Use triple quotes for multi-line strings
 
 ### Code Comments
 - Add brief comments above non-obvious business logic
@@ -37,41 +37,39 @@ ELSE:
 - Keep comments concise and relevant
 </conditional-block>
 
-<conditional-block task-condition="html-css-tailwind" context-check="html-css-style">
-IF current task involves writing or updating HTML, CSS, or TailwindCSS:
-  IF html-style.md AND css-style.md already in context:
-    SKIP: Re-reading these files
-    NOTE: "Using HTML/CSS style guides already in context"
+
+<conditional-block task-condition="kotlin" context-check="kotlin-style">
+IF current task involves writing or updating Kotlin code:
+  IF kotlin-style.md already in context:
+    SKIP: Re-reading this file
+    NOTE: "Using Kotlin style guide already in context"
   ELSE:
     <context_fetcher_strategy>
       IF current agent is Claude Code AND context-fetcher agent exists:
         USE: @agent:context-fetcher
-        REQUEST: "Get HTML formatting rules from code-style/html-style.md"
-        REQUEST: "Get CSS and TailwindCSS rules from code-style/css-style.md"
+        REQUEST: "Get Kotlin style rules from code-style/kotlin-style.md"
         PROCESS: Returned style rules
       ELSE:
-        READ the following style guides (only if not already in context):
-        - @.agent-os/standards/code-style/html-style.md (if not in context)
-        - @.agent-os/standards/code-style/css-style.md (if not in context)
+        READ: @.agent-os/standards/code-style/kotlin-style.md
     </context_fetcher_strategy>
 ELSE:
-  SKIP: HTML/CSS style guides not relevant to current task
+  SKIP: Kotlin style guide not relevant to current task
 </conditional-block>
 
-<conditional-block task-condition="javascript" context-check="javascript-style">
-IF current task involves writing or updating JavaScript:
-  IF javascript-style.md already in context:
+<conditional-block task-condition="jetpack-compose" context-check="compose-style">
+IF current task involves writing or updating Jetpack Compose UI code:
+  IF jetpack-compose-style.md already in context:
     SKIP: Re-reading this file
-    NOTE: "Using JavaScript style guide already in context"
+    NOTE: "Using Jetpack Compose style guide already in context"
   ELSE:
     <context_fetcher_strategy>
       IF current agent is Claude Code AND context-fetcher agent exists:
         USE: @agent:context-fetcher
-        REQUEST: "Get JavaScript style rules from code-style/javascript-style.md"
+        REQUEST: "Get Jetpack Compose style rules from code-style/jetpack-compose-style.md"
         PROCESS: Returned style rules
       ELSE:
-        READ: @.agent-os/standards/code-style/javascript-style.md
+        READ: @.agent-os/standards/code-style/jetpack-compose-style.md
     </context_fetcher_strategy>
 ELSE:
-  SKIP: JavaScript style guide not relevant to current task
+  SKIP: Jetpack Compose style guide not relevant to current task
 </conditional-block>
